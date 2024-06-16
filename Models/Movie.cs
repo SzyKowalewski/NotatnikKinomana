@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,5 +15,8 @@ namespace NotatnikKinomana.Models
         public DateTime? PremiereDate { get; set; }
         public string Review { get; set; }
         public int Rating { get; set; }
+        public bool IsInSchedule { get; set; }
+        public string Description { get; set; }
+        public int Runtime { get; set; }
     }
 }

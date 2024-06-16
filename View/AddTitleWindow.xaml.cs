@@ -1,6 +1,7 @@
 ﻿using NotatnikKinomana.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,8 @@ namespace NotatnikKinomana
         {
             string title = TitleTextBox.Text;
             string genre = GenreTextBox.Text;
+            string description = DescriptionTextBox.Text;
+            int length = int.Parse(LengthTextBox.Text);
 
             var existingMovie = _context.Movies.FirstOrDefault(m => m.Title == title);
 
@@ -43,7 +46,9 @@ namespace NotatnikKinomana
             var movie = new Movie
             {
                 Title = title,
-                Genre = genre
+                Genre = genre,
+                Description = description,
+                Runtime = length
             };
             MessageBox.Show("Dodano nowy tytuł: " + title);
             this.DialogResult = true;

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotatnikKinomana"
         mc:Ignorable="d"
-        Title="NotatnikKinomana" Height="450" Width="800">
+        Title="NotatnikKinomana" Height="450" Width="1100">
     <Grid>
         <Menu VerticalAlignment="Top">
             <MenuItem Header="Filmy">
@@ -15,21 +15,22 @@
                 <Separator/>
                 <MenuItem Header="Zakończ" Click="Exit_Click"/>
             </MenuItem>
-            <MenuItem Header="Harmonogram oglądania" Click="ViewSchedule_Click"/>
+            <MenuItem Header="Harmonogram oglądania">
+                <MenuItem Header="Wyświetl harmonogram oglądania" Click="ViewSchedule_Click"/>
+                <MenuItem Header="Dodaj do harmonogramu" Click="AddToSchedule_Click"/>
+            </MenuItem>
             <MenuItem Header="Dodaj Recenzję" Click="AddReview_Click"/>
             <MenuItem Header="Oceń Film" Click="RateMovie_Click"/>
             <MenuItem Header="Pomoc">
                 <MenuItem Header="O programie"/>
             </MenuItem>
         </Menu>
-        <ListView Name="MoviesList" Margin="10,30,10,10">
+        <ListView Name="MoviesList" Margin="10,30,10,10" MouseDoubleClick="MoviesList_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Tytuł" DisplayMemberBinding="{Binding Title}" Width="200"/>
                     <GridViewColumn Header="Gatunek" DisplayMemberBinding="{Binding Genre}" Width="150"/>
-                    <GridViewColumn Header="Data premiery" DisplayMemberBinding="{Binding PremiereDate, StringFormat=\{0:dd/MM/yyyy\}}" Width="150"/>
-                    <GridViewColumn Header="Recenzja" DisplayMemberBinding="{Binding Review}" Width="200"/>
-                    <GridViewColumn Header="Ocena" DisplayMemberBinding="{Binding Rating}" Width="50"/>
+                    <GridViewColumn Header="Opis" DisplayMemberBinding="{Binding Description}" Width="150"/>
 
                 </GridView>
             </ListView.View>

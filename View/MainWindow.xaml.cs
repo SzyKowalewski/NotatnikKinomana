@@ -1,4 +1,5 @@
 ﻿using NotatnikKinomana.Models;
+using NotatnikKinomana.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,6 +24,7 @@ namespace NotatnikKinomana
     public partial class MainWindow : Window
     {
         public ObservableCollection<Movie> Movies { get; set; }
+        public ObservableCollection<Movie> Schedule = new ObservableCollection<Movie>();
 
         private MovieContext _context;
 
@@ -31,6 +33,7 @@ namespace NotatnikKinomana
             InitializeComponent();
             _context = new MovieContext();
             _context.Database.EnsureCreated();
+            _context.EnsureSchemaUpdated();
             LoadMovies();
         }
 
@@ -48,14 +51,20 @@ namespace NotatnikKinomana
             AddTitleWindow addTitleWindow = new AddTitleWindow();
             if (addTitleWindow.ShowDialog() == true)
             {
-                var movie = new Movie
+                if (int.TryParse(addTitleWindow.LengthTextBox.Text, out int runtime))
                 {
-                    Title = addTitleWindow.TitleTextBox.Text,
-                    Genre = addTitleWindow.GenreTextBox.Text
-                };
-                _context.Movies.Add(movie);
-                _context.SaveChanges();
-                LoadMovies();
+                    var movie = new Movie
+                    {
+                        Title = addTitleWindow.TitleTextBox.Text,
+                        Genre = addTitleWindow.GenreTextBox.Text,
+                        Description = addTitleWindow.DescriptionTextBox.Text,
+                        Runtime = runtime
+                    };
+
+                    _context.Movies.Add(movie);
+                    _context.SaveChanges();
+                    LoadMovies();
+                }
             }
         }
 
@@ -91,6 +100,21 @@ namespace NotatnikKinomana
             scheduleWindow.ShowDialog();
         }
 
+        private void AddToSchedule_Click(object sender, RoutedEventArgs e)
+        {
+            if (MoviesList.SelectedItem is Movie selectedMovie)
+            {
+                selectedMovie.IsInSchedule = true;
+                _context.Movies.Update(selectedMovie);
+                _context.SaveChanges();
+                MessageBox.Show("Film został dodany do harmonogramu.");
+            }
+            else
+            {
+                MessageBox.Show("Proszę wybrać film do dodania do harmonogramu.");
+            }
+        }
+
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -101,7 +125,7 @@ namespace NotatnikKinomana
             AddReviewWindow addReviewWindow = new AddReviewWindow();
             if (addReviewWindow.ShowDialog() == true)
             {
-                var movie = Movies.FirstOrDefault(m => m.Title == addReviewWindow.TitleTextBox.Text);
+                var movie = Movies.FirstOrDefault(m => m.Title == addReviewWindow.TitleComboBox.Text);
                 if (movie != null)
                 {
                     movie.Review = addReviewWindow.ReviewTextBox.Text;
@@ -121,7 +145,7 @@ namespace NotatnikKinomana
             RateMovieWindow rateMovieWindow = new RateMovieWindow();
             if (rateMovieWindow.ShowDialog() == true)
             {
-                var movie = Movies.FirstOrDefault(m => m.Title == rateMovieWindow.TitleTextBox.Text);
+                var movie = Movies.FirstOrDefault(m => m.Title == rateMovieWindow.TitleComboBox.Text);
                 if (movie != null)
                 {
                     movie.Rating = (int)rateMovieWindow.RatingSlider.Value;
@@ -147,6 +171,16 @@ namespace NotatnikKinomana
             else
             {
                 MessageBox.Show("Nie wybrano filmu do usunięcia.");
+            }
+        }
+
+        private void MoviesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (MoviesList.SelectedItem is Movie selectedMovie)
+            {
+                MovieDetailsWindow detailsWindow = new MovieDetailsWindow(selectedMovie);
+                detailsWindow.DataContext = selectedMovie;
+                detailsWindow.ShowDialog();
             }
         }
     }

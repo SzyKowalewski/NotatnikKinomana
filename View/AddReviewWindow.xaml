@@ -9,7 +9,7 @@
     <Grid Margin="10">
         <StackPanel>
             <TextBlock Text="Tytuł:" Margin="0,0,0,10"/>
-            <TextBox Name="TitleTextBox" Margin="0,0,0,20"/>
+            <ComboBox Name="TitleComboBox" Margin="0,0,0,20" DisplayMemberPath="Title"/>
             <TextBlock Text="Recenzja:" Margin="0,0,0,10"/>
             <TextBox Name="ReviewTextBox" Margin="0,0,0,20" AcceptsReturn="True" Height="100"/>
             <Button Content="Dodaj" Width="80" HorizontalAlignment="Right" Click="AddButton_Click"/>

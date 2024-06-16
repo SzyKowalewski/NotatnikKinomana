@@ -16,34 +16,36 @@ using System.Windows.Shapes;
 namespace NotatnikKinomana
 {
     /// <summary>
-    /// Logika interakcji dla klasy RateMovieWindow.xaml
+    /// Logika interakcji dla klasy AddReviewWindow.xaml
     /// </summary>
-    public partial class RateMovieWindow : Window
+    public partial class AddReviewWindow : Window
     {
         private MovieContext _context;
-        public RateMovieWindow()
+        public AddReviewWindow()
         {
             InitializeComponent();
             _context = new MovieContext();
+            LoadMovies();
+        }
+
+        private void LoadMovies()
+        {
+            var movies = _context.Movies.ToList();
+            TitleComboBox.ItemsSource = movies;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            string title = TitleTextBox.Text;
-            int rating = (int)RatingSlider.Value;
-
-            var movie = _context.Movies.FirstOrDefault(m => m.Title == title);
-            if (movie != null)
+            if (TitleComboBox.SelectedItem is Movie selectedMovie)
             {
-                movie.Rating = rating;
-                _context.Movies.Update(movie);
-                _context.SaveChanges();
-                MessageBox.Show($"Dodano ocenę: {title} - {rating}");
+                string review = ReviewTextBox.Text;
+                selectedMovie.Review = review;
+                MessageBox.Show($"Dodano recenzję do filmu: {selectedMovie.Title}");
                 this.DialogResult = true;
             }
             else
             {
-                MessageBox.Show("Nie znaleziono filmu o podanym tytule.");
+                MessageBox.Show("Nie wybrano filmu.");
             }
         }
     }
