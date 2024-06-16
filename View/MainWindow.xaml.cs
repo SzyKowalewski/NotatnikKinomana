@@ -115,6 +115,12 @@ namespace NotatnikKinomana
             }
         }
 
+        private void ViewWatched_Click(object sender, RoutedEventArgs e)
+        {
+            WatchedWindow watchedMoviesWindow = new WatchedWindow();
+            watchedMoviesWindow.ShowDialog();
+        }
+
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();

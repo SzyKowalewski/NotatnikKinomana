@@ -19,6 +19,7 @@
                 <MenuItem Header="Wyświetl harmonogram oglądania" Click="ViewSchedule_Click"/>
                 <MenuItem Header="Dodaj do harmonogramu" Click="AddToSchedule_Click"/>
             </MenuItem>
+            <MenuItem Header="Obejrzane Filmy" Click="ViewWatched_Click"/>
             <MenuItem Header="Dodaj Recenzję" Click="AddReview_Click"/>
             <MenuItem Header="Oceń Film" Click="RateMovie_Click"/>
             <MenuItem Header="Pomoc">

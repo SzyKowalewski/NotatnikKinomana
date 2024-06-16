@@ -1,4 +1,5 @@
-﻿using NotatnikKinomana.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using NotatnikKinomana.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -122,6 +123,32 @@ namespace NotatnikKinomana
                         }
                     }
                 }
+            }
+        }
+
+        private void MarkAsWatched_Click(object sender, RoutedEventArgs e)
+        {
+            if (ScheduleList.SelectedItem is Movie selectedMovie)
+            {
+                selectedMovie.IsWatched = true;
+                selectedMovie.IsInSchedule = false;
+
+                var watched = new Watched
+                {
+                    MovieId = selectedMovie.Id,
+                    WatchedDate = DateTime.Now
+                };
+
+                _context.Watched.Add(watched);
+                _context.Movies.Update(selectedMovie);
+                _context.SaveChanges();
+
+                Schedule.Remove(selectedMovie);
+                MessageBox.Show("Film oznaczony jako obejrzany.");
+            }
+            else
+            {
+                MessageBox.Show("Proszę wybrać film do oznaczenia jako obejrzane.");
             }
         }
 

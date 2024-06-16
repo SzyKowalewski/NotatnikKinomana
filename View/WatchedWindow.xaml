@@ -1,0 +1,25 @@
+﻿<Window x:Class="NotatnikKinomana.View.WatchedWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NotatnikKinomana.View"
+        mc:Ignorable="d"
+        Title="Obejrzane" Height="450" Width="800">
+    <Grid Margin="10">
+        <ListView Name="WatchedMoviesList" Margin="0,0,0,50">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Tytuł" DisplayMemberBinding="{Binding Movie.Title}" Width="200"/>
+                    <GridViewColumn Header="Gatunek" DisplayMemberBinding="{Binding Movie.Genre}" Width="150"/>
+                    <GridViewColumn Header="Data obejrzenia" DisplayMemberBinding="{Binding WatchedDate}" Width="150"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Button Content="Oblicz czas oglądania" Width="150" Margin="10" Click="CalculateTotalWatchTime_Click"/>
+            <Button Content="Usuń z obejrzanych" Width="150" Margin="10" Click="RemoveFromWatched_Click"/>
+            <Button Content="Zamknij" Width="100" Margin="10" Click="Close_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

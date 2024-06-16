@@ -19,5 +19,6 @@ namespace NotatnikKinomana.Models
         public string Description { get; set; }
         public int Runtime { get; set; }
         public int OrderIndex { get; set; }
+        public bool IsWatched { get; set; }
     }
 }

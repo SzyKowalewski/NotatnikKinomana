@@ -17,6 +17,7 @@
             </ListView.View>
         </ListView>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Button Content="Oznacz jako obejrzane" Width="150" Margin="10" Click="MarkAsWatched_Click"/>
             <Button Content="Usuń z harmonogramu" Width="150" Margin="10" Click="RemoveFromSchedule_Click"/>
             <Button Content="Zamknij" Width="100" Margin="10" Click="Close_Click"/>
         </StackPanel>

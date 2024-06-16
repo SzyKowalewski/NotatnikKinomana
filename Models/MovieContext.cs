@@ -11,6 +11,7 @@ namespace NotatnikKinomana.Models
     internal class MovieContext : DbContext
     {
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Watched> Watched { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
