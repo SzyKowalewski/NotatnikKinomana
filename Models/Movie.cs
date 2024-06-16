@@ -18,5 +18,6 @@ namespace NotatnikKinomana.Models
         public bool IsInSchedule { get; set; }
         public string Description { get; set; }
         public int Runtime { get; set; }
+        public int OrderIndex { get; set; }
     }
 }

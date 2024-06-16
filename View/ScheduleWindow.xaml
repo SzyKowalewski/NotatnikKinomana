@@ -7,11 +7,12 @@
         mc:Ignorable="d"
         Title="Harmonogram Oglądania" Height="450" Width="800">
     <Grid Margin="10">
-        <ListView Name="ScheduleList" Margin="0,0,0,50">
+        <ListView Name="ScheduleList" Margin="0,0,0,50" PreviewMouseLeftButtonDown="ScheduleList_PreviewMouseLeftButtonDown" PreviewMouseMove="ScheduleList_PreviewMouseMove" AllowDrop="True" Drop="ScheduleList_Drop">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Tytuł" DisplayMemberBinding="{Binding Title}" Width="200"/>
                     <GridViewColumn Header="Gatunek" DisplayMemberBinding="{Binding Genre}" Width="150"/>
+                    <GridViewColumn Header="Czas trwania" DisplayMemberBinding="{Binding Runtime}" Width="100"/>
                 </GridView>
             </ListView.View>
         </ListView>

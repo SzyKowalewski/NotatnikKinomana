@@ -23,6 +23,7 @@ namespace NotatnikKinomana
     {
         public ObservableCollection<Movie> Schedule { get; set; }
         private MovieContext _context;
+        private Point _dragStartPoint;
 
         public ScheduleWindow()
         {
@@ -33,7 +34,7 @@ namespace NotatnikKinomana
 
         private void LoadSchedule()
         {
-            Schedule = new ObservableCollection<NotatnikKinomana.Models.Movie>(_context.Movies.Where(m => m.IsInSchedule == true).ToList());
+            Schedule = new ObservableCollection<Movie>(_context.Movies.Where(m => m.IsInSchedule).OrderBy(m => m.OrderIndex).ToList());
             ScheduleList.ItemsSource = Schedule;
         }
 
@@ -49,6 +50,78 @@ namespace NotatnikKinomana
             else
             {
                 MessageBox.Show("Proszę wybrać film do usunięcia z harmonogramu.");
+            }
+        }
+
+        private void ScheduleList_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            _dragStartPoint = e.GetPosition(null);
+        }
+
+        private void ScheduleList_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            Point mousePos = e.GetPosition(null);
+            Vector diff = _dragStartPoint - mousePos;
+
+            if (e.LeftButton == MouseButtonState.Pressed &&
+                (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+            {
+                // Initialize the drag & drop operation
+                ListView listView = sender as ListView;
+                ListViewItem listViewItem = FindAncestor<ListViewItem>((DependencyObject)e.OriginalSource);
+
+                if (listViewItem != null)
+                {
+                    Movie movie = (Movie)listView.ItemContainerGenerator.ItemFromContainer(listViewItem);
+                    DataObject dragData = new DataObject("myFormat", movie);
+                    DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
+                }
+            }
+        }
+
+        private static T FindAncestor<T>(DependencyObject current) where T : DependencyObject
+        {
+            while (current != null && !(current is T))
+            {
+                current = VisualTreeHelper.GetParent(current);
+            }
+            return current as T;
+        }
+
+        private void ScheduleList_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent("myFormat"))
+            {
+                Movie droppedMovie = e.Data.GetData("myFormat") as Movie;
+                ListView listView = sender as ListView;
+                Movie targetMovie = ((FrameworkElement)e.OriginalSource).DataContext as Movie;
+
+                if (droppedMovie != null && listView != null)
+                {
+                    int removedIdx = Schedule.IndexOf(droppedMovie);
+                    int targetIdx = Schedule.IndexOf(targetMovie);
+
+                    if (removedIdx >= 0)
+                    {
+                        if (targetIdx < 0)
+                        {
+                            targetIdx = Schedule.Count - 1;
+                        }
+
+                        if (removedIdx != targetIdx)
+                        {
+                            Schedule.Move(removedIdx, targetIdx);
+
+                            // Aktualizuj kolejność w bazie danych
+                            for (int i = 0; i < Schedule.Count; i++)
+                            {
+                                Schedule[i].OrderIndex = i;
+                            }
+                            _context.SaveChanges();
+                        }
+                    }
+                }
             }
         }
 
