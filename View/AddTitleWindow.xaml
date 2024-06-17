@@ -6,21 +6,23 @@
         xmlns:local="clr-namespace:NotatnikKinomana"
         mc:Ignorable="d"
         Title="DodajTytuł" Height="460" Width="800">
-    <Grid Margin="10">
-        <StackPanel>
-            <TextBlock Text="Tytuł:" Margin="0,0,0,10"/>
-            <TextBox Name="TitleTextBox" Margin="0,0,0,10"/>
-            <TextBlock Text="Gatunek:" Margin="0,0,0,10"/>
-            <TextBox Name="GenreTextBox" Margin="0,0,0,10"/>
-            <TextBlock Text="Imię Reżysera:" Margin="0,0,0,10"/>
-            <TextBox Name="DirectorFirstNameTextBox" Margin="0,0,0,10"/>
-            <TextBlock Text="Nazwisko Reżysera:" Margin="0,0,0,10"/>
-            <TextBox Name="DirectorLastNameTextBox" Margin="0,0,0,10"/>
-            <TextBlock Text="Opis:" Margin="0,0,0,10"/>
-            <TextBox Name="DescriptionTextBox" Margin="0,0,0,10"/>
-            <TextBlock Text="Długość (minuty):" Margin="0,0,0,10"/>
-            <TextBox Name="LengthTextBox" Margin="0,0,0,10"/>
-            <Button Content="Dodaj" Width="80" HorizontalAlignment="Right" Click="AddButton_Click"/>
+    <Grid Margin="2">
+        <StackPanel Style="{StaticResource StackPanelBackgroundStyle}">
+            <StackPanel>
+                <TextBlock Text="Tytuł:" Margin="0,0,0,10"/>
+                <TextBox Name="TitleTextBox" Margin="0,0,0,10" Background="White"/>
+                <TextBlock Text="Gatunek:" Margin="0,0,0,10"/>
+                <TextBox Name="GenreTextBox" Margin="0,0,0,10"/>
+                <TextBlock Text="Imię Reżysera:" Margin="0,0,0,10"/>
+                <TextBox Name="DirectorFirstNameTextBox" Margin="0,0,0,10"/>
+                <TextBlock Text="Nazwisko Reżysera:" Margin="0,0,0,10"/>
+                <TextBox Name="DirectorLastNameTextBox" Margin="0,0,0,10"/>
+                <TextBlock Text="Opis:" Margin="0,0,0,10"/>
+                <TextBox Name="DescriptionTextBox" Margin="0,0,0,10"/>
+                <TextBlock Text="Długość (minuty):" Margin="0,0,0,10"/>
+                <TextBox Name="LengthTextBox" Margin="0,0,0,10"/>
+                <Button Content="Dodaj" Width="80" HorizontalAlignment="Right" Click="AddButton_Click"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

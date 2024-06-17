@@ -20,60 +20,61 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,5">
-            <TextBlock Text="Szczegóły Filmu" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
-        </StackPanel>
+        <StackPanel Style="{StaticResource StackPanelBackgroundStyle}">
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,5" >
+                <TextBlock Text="Szczegóły Filmu" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+            </StackPanel>
 
-        <StackPanel Grid.Row="01" Orientation="Horizontal" Margin="0,5">
-            <TextBlock Text="Tytuł:" FontWeight="Bold" Margin="0,0,10,0"/>
-            <TextBlock x:Name="TitleTextBlock" Text="{Binding Title}" VerticalAlignment="Center"/>
-        </StackPanel>
+            <StackPanel Grid.Row="01" Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Tytuł:" FontWeight="Bold" Margin="0,0,10,0"/>
+                <TextBlock x:Name="TitleTextBlock" Text="{Binding Title}" VerticalAlignment="Center"/>
+            </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,5">
-            <TextBlock Text="Gatunek:" FontWeight="Bold" Margin="0,0,10,0"/>
-            <TextBlock x:Name="GenreTextBlock" Text="{Binding Genre}" VerticalAlignment="Center"/>
-        </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Gatunek:" FontWeight="Bold" Margin="0,0,10,0"/>
+                <TextBlock x:Name="GenreTextBlock" Text="{Binding Genre}" VerticalAlignment="Center"/>
+            </StackPanel>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,5">
-            <TextBlock Text="Data premiery:" FontWeight="Bold" Margin="0,0,10,0"/>
-            <TextBlock x:Name="PremiereDateTextBlock" Text="{Binding PremiereDate, StringFormat='dd/MM/yyyy'}" VerticalAlignment="Center"/>
-        </StackPanel>
+            <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Data premiery:" FontWeight="Bold" Margin="0,0,10,0"/>
+                <TextBlock x:Name="PremiereDateTextBlock" Text="{Binding PremiereDate, StringFormat='dd/MM/yyyy'}" VerticalAlignment="Center"/>
+            </StackPanel>
 
-        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,5">
-            <TextBlock Text="Opinia:" FontWeight="Bold" Margin="0,0,10,0"/>
-            <TextBlock x:Name="ReviewTextBlock" Text="{Binding Review}" VerticalAlignment="Center" TextWrapping="Wrap"/>
-        </StackPanel>
+            <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Opinia:" FontWeight="Bold" Margin="0,0,10,0"/>
+                <TextBlock x:Name="ReviewTextBlock" Text="{Binding Review}" VerticalAlignment="Center" TextWrapping="Wrap"/>
+            </StackPanel>
 
-        <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,5">
-            <TextBlock Text="Ocena:" FontWeight="Bold" Margin="0,0,10,0"/>
-            <TextBlock x:Name="RatingTextBlock" Text="{Binding Rating}" VerticalAlignment="Center"/>
-        </StackPanel>
+            <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Ocena:" FontWeight="Bold" Margin="0,0,10,0"/>
+                <TextBlock x:Name="RatingTextBlock" Text="{Binding Rating}" VerticalAlignment="Center"/>
+            </StackPanel>
 
-        <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="0,5">
-            <TextBlock Text="Czas trwania:" FontWeight="Bold" Margin="0,0,10,0"/>
-            <TextBlock x:Name="RuntimeTextBlock" Text="{Binding Runtime}" VerticalAlignment="Center"/>
-        </StackPanel>
+            <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Czas trwania:" FontWeight="Bold" Margin="0,0,10,0"/>
+                <TextBlock x:Name="RuntimeTextBlock" Text="{Binding Runtime}" VerticalAlignment="Center"/>
+            </StackPanel>
 
-        <StackPanel Grid.Row="7" Orientation="Horizontal" Margin="0,5">
-            <TextBlock Text="Na liście do obejrzenia:" FontWeight="Bold" Margin="0,0,10,0"/>
-            <TextBlock x:Name="IsInScheduleTextBlock" Text="{Binding IsInSchedule}" VerticalAlignment="Center"/>
-        </StackPanel>
+            <StackPanel Grid.Row="7" Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Na liście do obejrzenia:" FontWeight="Bold" Margin="0,0,10,0"/>
+                <TextBlock x:Name="IsInScheduleTextBlock" Text="{Binding IsInSchedule}" VerticalAlignment="Center"/>
+            </StackPanel>
 
-        <StackPanel Grid.Row="8" Orientation="Horizontal" Margin="0,5">
-            <TextBlock Text="Obejrzany:" FontWeight="Bold" Margin="0,0,10,0"/>
-            <TextBlock x:Name="IsWatchedTextBlock" Text="{Binding IsWatched}" VerticalAlignment="Center"/>
-        </StackPanel>
+            <StackPanel Grid.Row="8" Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Obejrzany:" FontWeight="Bold" Margin="0,0,10,0"/>
+                <TextBlock x:Name="IsWatchedTextBlock" Text="{Binding IsWatched}" VerticalAlignment="Center"/>
+            </StackPanel>
 
-        <StackPanel Grid.Row="9" Orientation="Horizontal" Margin="0,5">
-            <TextBlock Text="Reżyser:" FontWeight="Bold" Margin="0,0,10,0"/>
-            <TextBlock x:Name="DirectorNameTextBlock" Text="{Binding Director.FirstName}" VerticalAlignment="Center"/>
-        </StackPanel>
+            <StackPanel Grid.Row="9" Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Reżyser:" FontWeight="Bold" Margin="0,0,10,0"/>
+                <TextBlock x:Name="DirectorNameTextBlock" Text="{Binding Director.FirstName}" VerticalAlignment="Center"/>
+            </StackPanel>
 
-        <StackPanel Grid.Row="10" Orientation="Horizontal" Margin="0,5,380,-2">
-            <TextBlock Text="Opis:" FontWeight="Bold" Margin="0,0,10,0" Width="34"/>
-            <TextBlock x:Name="DescriptionTextBlock" Text="{Binding Description}" TextWrapping="Wrap" Width="326" Height="100"/>
+            <StackPanel Grid.Row="10" Orientation="Horizontal" Margin="0,5,380,-2">
+                <TextBlock Text="Opis:" FontWeight="Bold" Margin="0,0,10,0" Width="34"/>
+                <TextBlock x:Name="DescriptionTextBlock" Text="{Binding Description}" TextWrapping="Wrap" Width="326" Height="100"/>
+            </StackPanel>
         </StackPanel>
-
         <Button Content="Zamknij"  Width="100" Margin="0,20,0,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="Close_Click"/>
     </Grid>
 </Window>

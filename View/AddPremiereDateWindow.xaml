@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Dodaj Datę Premiery" Height="450" Width="800">
     <Grid Margin="10">
-        <StackPanel>
+        <StackPanel Style="{StaticResource StackPanelBackgroundStyle}">
             <ComboBox x:Name="MovieComboBox" DisplayMemberPath="Title" SelectedValuePath="Id"/>
             <TextBlock Text="Data premiery:" Margin="0,0,0,10"/>
             <DatePicker Name="PremiereDatePicker" Margin="0,0,0,20"/>

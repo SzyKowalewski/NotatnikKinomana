@@ -7,15 +7,17 @@
         mc:Ignorable="d"
         Title="Obejrzane" Height="450" Width="800">
     <Grid Margin="10">
-        <ListView Name="WatchedMoviesList" Margin="0,0,0,50">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Tytuł" DisplayMemberBinding="{Binding Movie.Title}" Width="200"/>
-                    <GridViewColumn Header="Gatunek" DisplayMemberBinding="{Binding Movie.Genre}" Width="150"/>
-                    <GridViewColumn Header="Data obejrzenia" DisplayMemberBinding="{Binding WatchedDate}" Width="150"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <StackPanel Style="{StaticResource StackPanelBackgroundStyle}">
+            <ListView Name="WatchedMoviesList" Margin="0,0,0,50">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Tytuł" DisplayMemberBinding="{Binding Movie.Title}" Width="200"/>
+                        <GridViewColumn Header="Gatunek" DisplayMemberBinding="{Binding Movie.Genre}" Width="150"/>
+                        <GridViewColumn Header="Data obejrzenia" DisplayMemberBinding="{Binding WatchedDate}" Width="150"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Button Content="Oblicz czas oglądania" Width="150" Margin="10" Click="CalculateTotalWatchTime_Click"/>
             <Button Content="Usuń z obejrzanych" Width="150" Margin="10" Click="RemoveFromWatched_Click"/>

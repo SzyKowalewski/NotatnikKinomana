@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="DodajRecenzję" Height="450" Width="800">
     <Grid Margin="10">
-        <StackPanel>
+        <StackPanel Style="{StaticResource StackPanelBackgroundStyle}">
             <TextBlock Text="Tytuł:" Margin="0,0,0,10"/>
             <ComboBox Name="TitleComboBox" Margin="0,0,0,20" DisplayMemberPath="Title"/>
             <TextBlock Text="Recenzja:" Margin="0,0,0,10"/>

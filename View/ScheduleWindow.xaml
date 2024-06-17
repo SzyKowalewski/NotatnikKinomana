@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Harmonogram Oglądania" Height="450" Width="800">
     <Grid Margin="10">
+        <StackPanel Style="{StaticResource StackPanelBackgroundStyle}">
         <ListView Name="ScheduleList" Margin="0,0,0,50" PreviewMouseLeftButtonDown="ScheduleList_PreviewMouseLeftButtonDown" PreviewMouseMove="ScheduleList_PreviewMouseMove" AllowDrop="True" Drop="ScheduleList_Drop">
             <ListView.View>
                 <GridView>
@@ -16,11 +17,13 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Button Content="Oblicz całkowity czas" Width="150" Margin="10" Click="CalculateTotalRuntime_Click"/>
             <Button Content="Oznacz jako obejrzane" Width="150" Margin="10" Click="MarkAsWatched_Click"/>
             <Button Content="Usuń z harmonogramu" Width="150" Margin="10" Click="RemoveFromSchedule_Click"/>
             <Button Content="Zamknij" Width="100" Margin="10" Click="Close_Click"/>
         </StackPanel>
+        
     </Grid>
 </Window>

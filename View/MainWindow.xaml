@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:NotatnikKinomana"
         mc:Ignorable="d"
         Title="NotatnikKinomana" Height="450" Width="927">
+
     <Grid>
-        <Menu VerticalAlignment="Top">
+        <StackPanel Style="{StaticResource StackPanelBackgroundStyle}">
+            <Menu VerticalAlignment="Top">
             <MenuItem Header="Filmy">
                 <MenuItem Header="Dodaj tytuł" Click="AddTitle_Click"/>
                 <MenuItem Header="Dodaj datę premiery" Click="AddPremiereDate_Click"/>
@@ -27,16 +29,23 @@
             </MenuItem>
             <TextBox x:Name="FilterTextBox" Width="150" TextChanged="FilterTextBox_TextChanged"/>
         </Menu>
-        <StackPanel>
+
             <ListView x:Name="MoviesList" Margin="10,30,10,10" MouseDoubleClick="MoviesList_MouseDoubleClick">
+                <ListView.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </ListView.Background>
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Tytuł" DisplayMemberBinding="{Binding Title}" Width="200">
                             <GridViewColumn.HeaderTemplate>
                                 <DataTemplate>
-                                    <Grid>
-                                        <Button Content="Tytuł" Click="SortByColumn_Click" Tag="Title"/>
-                                    </Grid>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Tytuł: " VerticalAlignment="Center"/>
+                                        <Button Content="⇅" Click="SortByColumn_Click" Tag="Title"/>
+                                    </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.HeaderTemplate>
                         </GridViewColumn>
@@ -44,7 +53,10 @@
                             <GridViewColumn.HeaderTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <Button Content="Gatunek" Click="SortByColumn_Click" Tag="Genre"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Gatunek: " VerticalAlignment="Center"/>
+                                            <Button Content="⇅" Click="SortByColumn_Click" Tag="Genre"/>
+                                        </StackPanel>
                                     </Grid>
                                 </DataTemplate>
                             </GridViewColumn.HeaderTemplate>
@@ -54,7 +66,10 @@
                             <GridViewColumn.HeaderTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <Button Content="Imię Reżysera" Click="SortByColumn_Click" Tag="Director.FirstName"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Imię Reżysera: " VerticalAlignment="Center"/>
+                                            <Button Content="⇅" Click="SortByColumn_Click" Tag="Director.FirstName"/>
+                                        </StackPanel>
                                     </Grid>
                                 </DataTemplate>
                             </GridViewColumn.HeaderTemplate>
@@ -68,7 +83,10 @@
                             <GridViewColumn.HeaderTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <Button Content="Nazwisko Reżysera" Click="SortByColumn_Click" Tag="Director.LastName"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Nazwisko Reżysera: " VerticalAlignment="Center"/>
+                                            <Button Content="⇅" Click="SortByColumn_Click" Tag="Director.LastName"/>
+                                        </StackPanel>
                                     </Grid>
                                 </DataTemplate>
                             </GridViewColumn.HeaderTemplate>
@@ -82,7 +100,10 @@
                             <GridViewColumn.HeaderTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <Button Content="Długość" Click="SortByColumn_Click" Tag="Runtime"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Długość: " VerticalAlignment="Center"/>
+                                            <Button Content="⇅" Click="SortByColumn_Click" Tag="Runtime"/>
+                                        </StackPanel>
                                     </Grid>
                                 </DataTemplate>
                             </GridViewColumn.HeaderTemplate>

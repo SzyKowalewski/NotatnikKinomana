@@ -7,46 +7,48 @@
         mc:Ignorable="d"
         Title="O programie" Height="450" Width="800">
     <Grid Margin="20">
-        <TextBlock TextWrapping="Wrap">
-            Witaj w aplikacji NotatnikKinomana!
-            <LineBreak/>
+        <StackPanel Style="{StaticResource StackPanelBackgroundStyle}">
+            <TextBlock TextWrapping="Wrap">
+                Witaj w aplikacji NotatnikKinomana!
+                <LineBreak/>
 
-            Aplikacja umożliwia zarządzanie listą filmów oraz planowanie ich oglądania.
-            <LineBreak/>
+                Aplikacja umożliwia zarządzanie listą filmów oraz planowanie ich oglądania.
+                <LineBreak/>
 
-            - Dodaj nowy film:
-              Aby dodać nowy film, wybierz opcję "Filmy" -> "Dodaj tytuł". Wprowadź wszystkie wymagane informacje, takie jak tytuł, gatunek, długość, oraz imię i nazwisko reżysera.
-            <LineBreak/>
+                - Dodaj nowy film:
+                  Aby dodać nowy film, wybierz opcję "Filmy" -> "Dodaj tytuł". Wprowadź wszystkie wymagane informacje, takie jak tytuł, gatunek, długość, oraz imię i nazwisko reżysera.
+                <LineBreak/>
 
-            - Dodaj datę premiery:
-              Aby dodać datę premiery dla istniejącego filmu, wybierz opcję "Filmy" -> "Dodaj datę premiery". Wybierz film z listy, a następnie wybierz datę premiery.
-            <LineBreak/>
+                - Dodaj datę premiery:
+                  Aby dodać datę premiery dla istniejącego filmu, wybierz opcję "Filmy" -> "Dodaj datę premiery". Wybierz film z listy, a następnie wybierz datę premiery.
+                <LineBreak/>
 
-            - Dodaj do harmonogramu oglądania:
-              Aby dodać film do harmonogramu oglądania, wybierz film z listy i kliknij "Harmonogram oglądania" -> "Dodaj do harmonogramu". Film zostanie dodany do listy planowanych do obejrzenia.
-            <LineBreak/>
+                - Dodaj do harmonogramu oglądania:
+                  Aby dodać film do harmonogramu oglądania, wybierz film z listy i kliknij "Harmonogram oglądania" -> "Dodaj do harmonogramu". Film zostanie dodany do listy planowanych do obejrzenia.
+                <LineBreak/>
 
-            - Przeglądaj obejrzane filmy:
-              Aby zobaczyć listę obejrzanych filmów, wybierz opcję "Obejrzane filmy". 
-            <LineBreak/>
+                - Przeglądaj obejrzane filmy:
+                  Aby zobaczyć listę obejrzanych filmów, wybierz opcję "Obejrzane filmy". 
+                <LineBreak/>
 
-            - Dodaj recenzję:
-              Aby dodać recenzję do filmu, wybierz film z listy, a następnie wybierz opcję "Dodaj recenzję". Wprowadź swoją recenzję w oknie dialogowym.
-            <LineBreak/>
+                - Dodaj recenzję:
+                  Aby dodać recenzję do filmu, wybierz film z listy, a następnie wybierz opcję "Dodaj recenzję". Wprowadź swoją recenzję w oknie dialogowym.
+                <LineBreak/>
 
-            - Oceń film:
-              Aby ocenić film, wybierz film z listy, a następnie wybierz opcję "Oceń film". Przesuń suwak oceny i zatwierdź.
-            <LineBreak/>
+                - Oceń film:
+                  Aby ocenić film, wybierz film z listy, a następnie wybierz opcję "Oceń film". Przesuń suwak oceny i zatwierdź.
+                <LineBreak/>
 
-            - Usuń tytuł:
-              Aby usunąć film z listy, wybierz film z listy i kliknij "Filmy" -> "Usuń tytuł".
-            <LineBreak/>
+                - Usuń tytuł:
+                  Aby usunąć film z listy, wybierz film z listy i kliknij "Filmy" -> "Usuń tytuł".
+                <LineBreak/>
 
-            - Sortowanie i filtrowanie:
-              Możesz sortować filmy klikając na nagłówki kolumn w liście filmów. Możesz także użyć pola wyszukiwania, aby filtrować filmy według tytułu lub nazwiska reżysera lub sprawdzić których filmów nie obejrzałeś wpisując "nieobejrzane".
-            <LineBreak/>
+                - Sortowanie i filtrowanie:
+                  Możesz sortować filmy klikając na nagłówki kolumn w liście filmów. Możesz także użyć pola wyszukiwania, aby filtrować filmy według tytułu lub nazwiska reżysera lub sprawdzić których filmów nie obejrzałeś wpisując "nieobejrzane".
+                <LineBreak/>
 
-            Miłego korzystania z aplikacji NotatnikKinomana!
-        </TextBlock>
+                Miłego korzystania z aplikacji NotatnikKinomana!
+            </TextBlock>
+        </StackPanel>
     </Grid>
 </Window>

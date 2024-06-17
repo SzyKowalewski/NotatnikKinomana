@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:NotatnikKinomana"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
+
+        <Style TargetType="{x:Type StackPanel}" x:Key="StackPanelBackgroundStyle">
+            <Setter Property="Background" Value="LightBlue"/>
+        </Style>
+
         <Style TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="white"/>
             <Setter Property="Height" Value="30"/>
@@ -38,10 +43,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-
         </Style>
-
-
         
 
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
