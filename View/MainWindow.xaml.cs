@@ -1,8 +1,10 @@
-﻿using NotatnikKinomana.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using NotatnikKinomana.Models;
 using NotatnikKinomana.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace NotatnikKinomana
 {
@@ -23,7 +26,8 @@ namespace NotatnikKinomana
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Movie> Movies { get; set; }
+        public ObservableCollection<Movie> Movies { get; set; } = new ObservableCollection<Movie>();
+
         public ObservableCollection<Movie> Schedule = new ObservableCollection<Movie>();
 
         private MovieContext _context;
@@ -34,14 +38,17 @@ namespace NotatnikKinomana
             _context = new MovieContext();
             _context.Database.EnsureCreated();
             _context.EnsureSchemaUpdated();
+            MoviesList.ItemsSource = Movies;
             LoadMovies();
         }
-
         private void LoadMovies()
         {
-            var movies = _context.Movies.ToList();
-            Movies = new ObservableCollection<Movie>(movies);
-            MoviesList.ItemsSource = Movies;
+            Movies.Clear();
+            var movies = _context.Movies.Include(m => m.Director).ToList();
+            foreach (var movie in movies)
+            {
+                Movies.Add(movie);
+            }
         }
 
 
@@ -53,12 +60,27 @@ namespace NotatnikKinomana
             {
                 if (int.TryParse(addTitleWindow.LengthTextBox.Text, out int runtime))
                 {
+                    Director director = _context.Directors.FirstOrDefault(d => d.FirstName == addTitleWindow.DirectorFirstNameTextBox.Text &&
+                                                                        d.LastName == addTitleWindow.DirectorLastNameTextBox.Text);
+                    if (director == null)
+                    {
+                        director = new Director
+                        {
+                            FirstName = addTitleWindow.DirectorFirstNameTextBox.Text,
+                            LastName = addTitleWindow.DirectorLastNameTextBox.Text
+                        };
+                        _context.Directors.Add(director);
+                        _context.SaveChanges();
+                        LoadMovies();
+                    }
+
                     var movie = new Movie
                     {
                         Title = addTitleWindow.TitleTextBox.Text,
                         Genre = addTitleWindow.GenreTextBox.Text,
                         Description = addTitleWindow.DescriptionTextBox.Text,
-                        Runtime = runtime
+                        Runtime = runtime,
+                        DirectorId = director.Id
                     };
 
                     _context.Movies.Add(movie);
@@ -104,6 +126,11 @@ namespace NotatnikKinomana
         {
             if (MoviesList.SelectedItem is Movie selectedMovie)
             {
+                if (selectedMovie.IsInSchedule || selectedMovie.IsWatched)
+                {
+                    MessageBox.Show("Ten film już znajduje się na liście do obejrzenia, lub został już obejrzany.", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
                 selectedMovie.IsInSchedule = true;
                 _context.Movies.Update(selectedMovie);
                 _context.SaveChanges();
@@ -184,11 +211,69 @@ namespace NotatnikKinomana
         {
             if (MoviesList.SelectedItem is Movie selectedMovie)
             {
+                _context.Entry(selectedMovie).Reload();
                 MovieDetailsWindow detailsWindow = new MovieDetailsWindow(selectedMovie);
                 detailsWindow.DataContext = selectedMovie;
                 detailsWindow.ShowDialog();
             }
         }
+
+        private Button _lastHeaderClicked = null;
+        private ListSortDirection _lastDirection = ListSortDirection.Ascending;
+        private void SortByColumn_Click(object sender, RoutedEventArgs e)
+        {
+            var header = sender as Button;
+            string sortBy = header?.Tag.ToString();
+            if (sortBy == null) return;
+
+            ListSortDirection direction = ListSortDirection.Ascending;
+            if (_lastHeaderClicked == header && _lastDirection == ListSortDirection.Ascending)
+            {
+                direction = ListSortDirection.Descending;
+            }
+
+            _lastHeaderClicked = header;
+            _lastDirection = direction;
+
+            ICollectionView dataView = CollectionViewSource.GetDefaultView(Movies);
+            dataView.SortDescriptions.Clear();
+            SortDescription sd = new SortDescription(sortBy, direction);
+            dataView.SortDescriptions.Add(sd);
+            dataView.Refresh();
+        }
+
+        private void FilterMovies(string filter)
+        {
+            ICollectionView view = CollectionViewSource.GetDefaultView(Movies);
+            view.Filter = item =>
+            {
+                Movie movie = item as Movie;
+                if (movie == null) return false;
+
+                bool matchesTitle = !string.IsNullOrEmpty(movie.Title) && movie.Title.ToLower().Contains(filter.ToLower());
+                bool matchesDirectorFirstName = movie.Director != null && !string.IsNullOrEmpty(movie.Director.FirstName) && movie.Director.FirstName.ToLower().Contains(filter.ToLower());
+                bool matchesDirectorLastName = movie.Director != null && !string.IsNullOrEmpty(movie.Director.LastName) && movie.Director.LastName.ToLower().Contains(filter.ToLower());
+                bool matchesUnwatched = filter.ToLower() == "nieobejrzane" && (movie.IsWatched) == false;
+
+                return matchesTitle || matchesDirectorFirstName || matchesDirectorLastName || matchesUnwatched;
+            };
+        }
+
+        private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (FilterTextBox != null)
+            {
+                FilterMovies(FilterTextBox.Text);
+            }
+        }
+
+        private void ShowHelp_Click(object sender, RoutedEventArgs e)
+        {
+            HelpWindow helpWindow = new HelpWindow();
+            helpWindow.ShowDialog();
+        }
+
     }
 
 }

@@ -20,5 +20,7 @@ namespace NotatnikKinomana.Models
         public int Runtime { get; set; }
         public int OrderIndex { get; set; }
         public bool IsWatched { get; set; }
+        public int? DirectorId { get; set; }
+        public virtual Director Director { get; set; }
     }
 }

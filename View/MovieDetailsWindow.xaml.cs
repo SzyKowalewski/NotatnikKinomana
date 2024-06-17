@@ -34,6 +34,11 @@ namespace NotatnikKinomana.View
             RatingTextBlock.Text = _selectedMovie.Rating.ToString();
             RuntimeTextBlock.Text = $"{_selectedMovie.Runtime} min";
             DescriptionTextBlock.Text = _selectedMovie.Description;
+            IsInScheduleTextBlock.Text = _selectedMovie.IsInSchedule ? "Tak" : "Nie";
+            IsWatchedTextBlock.Text = _selectedMovie.IsWatched ? "Tak" : "Nie";
+            DirectorNameTextBlock.Text = _selectedMovie.Director != null
+                ? $"{_selectedMovie.Director.FirstName} {_selectedMovie.Director.LastName}"
+                : "Nieznany";
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)

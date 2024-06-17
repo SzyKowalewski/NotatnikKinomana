@@ -49,9 +49,11 @@ namespace NotatnikKinomana.View
         {
             if (WatchedMoviesList.SelectedItem is Watched selectedWatchedMovie)
             {
+                selectedWatchedMovie.Movie.IsWatched = false;
                 _context.Watched.Remove(selectedWatchedMovie);
-                _context.SaveChanges();
+                
                 Watched.Remove(selectedWatchedMovie);
+                _context.SaveChanges();
             }
             else
             {

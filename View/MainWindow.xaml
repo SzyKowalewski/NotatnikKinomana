@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotatnikKinomana"
         mc:Ignorable="d"
-        Title="NotatnikKinomana" Height="450" Width="1100">
+        Title="NotatnikKinomana" Height="450" Width="927">
     <Grid>
         <Menu VerticalAlignment="Top">
             <MenuItem Header="Filmy">
@@ -23,18 +23,73 @@
             <MenuItem Header="Dodaj Recenzję" Click="AddReview_Click"/>
             <MenuItem Header="Oceń Film" Click="RateMovie_Click"/>
             <MenuItem Header="Pomoc">
-                <MenuItem Header="O programie"/>
+                <MenuItem Header="O programie" Click="ShowHelp_Click"/>
             </MenuItem>
+            <TextBox x:Name="FilterTextBox" Width="150" TextChanged="FilterTextBox_TextChanged"/>
         </Menu>
-        <ListView Name="MoviesList" Margin="10,30,10,10" MouseDoubleClick="MoviesList_MouseDoubleClick">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Tytuł" DisplayMemberBinding="{Binding Title}" Width="200"/>
-                    <GridViewColumn Header="Gatunek" DisplayMemberBinding="{Binding Genre}" Width="150"/>
-                    <GridViewColumn Header="Opis" DisplayMemberBinding="{Binding Description}" Width="150"/>
-
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <StackPanel>
+            <ListView x:Name="MoviesList" Margin="10,30,10,10" MouseDoubleClick="MoviesList_MouseDoubleClick">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Tytuł" DisplayMemberBinding="{Binding Title}" Width="200">
+                            <GridViewColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Button Content="Tytuł" Click="SortByColumn_Click" Tag="Title"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.HeaderTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Gatunek" DisplayMemberBinding="{Binding Genre}" Width="150">
+                            <GridViewColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Button Content="Gatunek" Click="SortByColumn_Click" Tag="Genre"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.HeaderTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Opis" DisplayMemberBinding="{Binding Description}" Width="150"/>
+                        <GridViewColumn Header="Imię Reżysera" Width="150">
+                            <GridViewColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Button Content="Imię Reżysera" Click="SortByColumn_Click" Tag="Director.FirstName"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.HeaderTemplate>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Director.FirstName}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Nazwisko Reżysera" Width="150">
+                            <GridViewColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Button Content="Nazwisko Reżysera" Click="SortByColumn_Click" Tag="Director.LastName"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.HeaderTemplate>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Director.LastName}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Długość" DisplayMemberBinding="{Binding Runtime}" Width="100">
+                            <GridViewColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Button Content="Długość" Click="SortByColumn_Click" Tag="Runtime"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.HeaderTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Window>

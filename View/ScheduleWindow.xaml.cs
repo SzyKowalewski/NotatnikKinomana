@@ -152,6 +152,13 @@ namespace NotatnikKinomana
             }
         }
 
+        private void CalculateTotalRuntime_Click(object sender, RoutedEventArgs e)
+        {
+            int totalRuntime = Schedule.Sum(m => m.Runtime);
+            TimeSpan totalTime = TimeSpan.FromMinutes(totalRuntime);
+            MessageBox.Show($"Całkowity czas trwania filmów do obejrzenia wynosi {totalTime.Hours} godzin {totalTime.Minutes} minut.", "Całkowity czas trwania");
+        }
+
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

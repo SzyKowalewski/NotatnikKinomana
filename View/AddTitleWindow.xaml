@@ -12,6 +12,10 @@
             <TextBox Name="TitleTextBox" Margin="0,0,0,20"/>
             <TextBlock Text="Gatunek:" Margin="0,0,0,10"/>
             <TextBox Name="GenreTextBox" Margin="0,0,0,20"/>
+            <TextBlock Text="Imię Reżysera:" Margin="0,0,0,10"/>
+            <TextBox Name="DirectorFirstNameTextBox" Margin="0,0,0,20"/>
+            <TextBlock Text="Nazwisko Reżysera:" Margin="0,0,0,10"/>
+            <TextBox Name="DirectorLastNameTextBox" Margin="0,0,0,20"/>
             <TextBlock Text="Opis:" Margin="0,0,0,10"/>
             <TextBox Name="DescriptionTextBox" Margin="0,0,0,20"/>
             <TextBlock Text="Długość (minuty):" Margin="0,0,0,10"/>

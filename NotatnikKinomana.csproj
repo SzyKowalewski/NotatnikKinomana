@@ -163,12 +163,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Director.cs" />
     <Compile Include="Models\Watched.cs" />
     <Compile Include="View\AddReviewWindow.xaml.cs">
       <DependentUpon>AddReviewWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieContext.cs" />
+    <Compile Include="View\HelpWindow.xaml.cs">
+      <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MovieDetailsWindow.xaml.cs">
       <DependentUpon>MovieDetailsWindow.xaml</DependentUpon>
     </Compile>
@@ -190,6 +194,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddTitleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HelpWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
