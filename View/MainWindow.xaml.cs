@@ -251,11 +251,12 @@ namespace NotatnikKinomana
                 if (movie == null) return false;
 
                 bool matchesTitle = !string.IsNullOrEmpty(movie.Title) && movie.Title.ToLower().Contains(filter.ToLower());
+                bool matchesGenre = !string.IsNullOrEmpty(movie.Genre) && movie.Genre.ToLower().Contains(filter.ToLower());
                 bool matchesDirectorFirstName = movie.Director != null && !string.IsNullOrEmpty(movie.Director.FirstName) && movie.Director.FirstName.ToLower().Contains(filter.ToLower());
                 bool matchesDirectorLastName = movie.Director != null && !string.IsNullOrEmpty(movie.Director.LastName) && movie.Director.LastName.ToLower().Contains(filter.ToLower());
                 bool matchesUnwatched = filter.ToLower() == "nieobejrzane" && (movie.IsWatched) == false;
 
-                return matchesTitle || matchesDirectorFirstName || matchesDirectorLastName || matchesUnwatched;
+                return matchesTitle || matchesGenre ||matchesDirectorFirstName || matchesDirectorLastName || matchesUnwatched;
             };
         }
 
