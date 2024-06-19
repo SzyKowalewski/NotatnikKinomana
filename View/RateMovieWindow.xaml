@@ -11,7 +11,7 @@
             <TextBlock Text="Tytuł:" Margin="0,0,0,10"/>
             <ComboBox Name="TitleComboBox" Margin="0,0,0,20" DisplayMemberPath="Title"/>
             <TextBlock Text="Ocena (0-10):" Margin="0,0,0,10"/>
-            <Slider Name="RatingSlider" Minimum="0" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True" Margin="0,0,0,20" Value="{Binding CurrentRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Slider  Name="RatingSlider" Minimum="0" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True" Margin="0,0,0,20" Value="{Binding CurrentRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="{Binding CurrentRating, StringFormat='Ocena: {0}'}" Margin="0,0,0,10"/>
             <Button Content="Dodaj" Width="80" HorizontalAlignment="Right" Click="AddButton_Click"/>
         </StackPanel>

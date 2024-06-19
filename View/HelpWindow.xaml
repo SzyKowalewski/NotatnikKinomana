@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NotatnikKinomana.View"
         mc:Ignorable="d"
         Title="O programie" Height="450" Width="800">
-    <Grid Margin="20">
+    <Grid Margin="5">
         <StackPanel Style="{StaticResource StackPanelBackgroundStyle}">
             <TextBlock TextWrapping="Wrap">
                 Witaj w aplikacji NotatnikKinomana!
